@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... Your existing head content ... -->
+</head>
+<body>    
+    <!-- ... Your existing body content ... -->
+    <script type="text/javascript">
+        var adminCredentials = { username: "admin", password: "admin" };
+        var customerCredentials = { username: "customer", password: "customer", email: "customer@gmail.com" };
+
+        var attempt = 3;
+
+        function validate() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                alert("Admin login successful!");
+                window.location = "/admin-dashboard.html";
+                return false;
+            } else if (username === customerCredentials.username && password === customerCredentials.password) {
+                alert("Customer login successful!");
+                window.location = "/customer-dashboard.html";
+                return false;
+            } else {
+                attempt--;
+                alert("Failed to login");
+            }
+
+            if (attempt === 0) {
+                document.getElementById("username").disabled = true;
+                document.getElementById("password").disabled = true;
+                document.getElementById("submit").disabled = true;
+                return false;
+            }
+        }
+
+        function validate1() {
+            var username = document.getElementById("username1").value;
+            var password = document.getElementById("password1").value;
+            var email = document.getElementById("email1").value;
+
+            if (username === adminCredentials.username || username === customerCredentials.username) {
+                alert("Username already exists. Please choose a different username.");
+                return false;
+            }
+
+            // In a real-world scenario, you would save the new user information to a database.
+            alert("Account created successfully!");
+            window.location = "index.html";
+            return false;
+        }
+    </script>
+</body>
+</html>
